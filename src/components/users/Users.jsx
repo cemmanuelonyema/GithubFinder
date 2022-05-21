@@ -1,8 +1,16 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+
 import UserItem from "./UserItem";
+
 import "./usersStyle.css";
 
 export class Users extends Component {
+  static propTypes = {
+    loading: PropTypes.bool.isRequired,
+    users: PropTypes.array.isRequired,
+  };
+
   state = {
     users: [
       {
@@ -32,7 +40,19 @@ export class Users extends Component {
     ],
   };
   render() {
-    // const { avatar_url, login, html_url } = this.state.users;
+    // const { users, loading } = this.props;
+
+    // if (loading) {
+    //   return <Spinner />;
+    // } else {
+    //   return (
+    //     <div className="users">
+    //       {this.props.users.map((user) => (
+    //         <UserItem key={user.id} user={user} />
+    //       ))}
+    //     </div>
+    //   );
+    // }
 
     return (
       <div className="users">
@@ -41,14 +61,6 @@ export class Users extends Component {
         ))}
       </div>
     );
-
-    // return (
-    //   <div className="users">
-    //     {this.props.users.map((user) => (
-    //       <UserItem key={user.id} user={user} />
-    //     ))}
-    //   </div>
-    // );
   }
 }
 
