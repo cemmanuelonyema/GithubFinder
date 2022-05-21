@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Spinner } from "../utils/spinner/Spinner";
 
 import UserItem from "./UserItem";
 
@@ -11,56 +12,58 @@ export class Users extends Component {
     users: PropTypes.array.isRequired,
   };
 
-  state = {
-    users: [
-      {
-        id: "1",
-        login: "mojombo1",
-        avatar_url: "https://avatars0.githubusercontent.com/u/1?v=4",
-        html_url: "https://github.com/mojombo",
-      },
-      {
-        id: "2",
-        login: "mojombo2",
-        avatar_url: "https://avatars0.githubusercontent.com/u/1?v=4",
-        html_url: "https://github.com/mojombo",
-      },
-      {
-        id: "3",
-        login: "mojombo3",
-        avatar_url: "https://avatars0.githubusercontent.com/u/1?v=4",
-        html_url: "https://github.com/mojombo",
-      },
-      {
-        id: "4",
-        login: "mojombo4",
-        avatar_url: "https://avatars0.githubusercontent.com/u/1?v=4",
-        html_url: "https://github.com/mojombo",
-      },
-    ],
-  };
+  //   state = {
+  //     users: [
+  //       {
+  //         id: "1",
+  //         login: "mojombo1",
+  //         avatar_url: "https://avatars0.githubusercontent.com/u/1?v=4",
+  //         html_url: "https://github.com/mojombo",
+  //       },
+  //       {
+  //         id: "2",
+  //         login: "mojombo2",
+  //         avatar_url: "https://avatars0.githubusercontent.com/u/1?v=4",
+  //         html_url: "https://github.com/mojombo",
+  //       },
+  //       {
+  //         id: "3",
+  //         login: "mojombo3",
+  //         avatar_url: "https://avatars0.githubusercontent.com/u/1?v=4",
+  //         html_url: "https://github.com/mojombo",
+  //       },
+  //       {
+  //         id: "4",
+  //         login: "mojombo4",
+  //         avatar_url: "https://avatars0.githubusercontent.com/u/1?v=4",
+  //         html_url: "https://github.com/mojombo",
+  //       },
+  //     ],
+  //   };
+
   render() {
-    // const { users, loading } = this.props;
+    const { users, loading } = this.props;
+    console.log(users, loading);
 
-    // if (loading) {
-    //   return <Spinner />;
-    // } else {
-    //   return (
-    //     <div className="users">
-    //       {this.props.users.map((user) => (
-    //         <UserItem key={user.id} user={user} />
-    //       ))}
-    //     </div>
-    //   );
-    // }
+    if (loading) {
+      return <Spinner />;
+    } else {
+      return (
+        <div className="users">
+          {users.map((user) => (
+            <UserItem key={user.id} user={user} />
+          ))}
+        </div>
+      );
+    }
 
-    return (
-      <div className="users">
-        {this.state.users.map((user) => (
-          <UserItem key={user.id} user={user} />
-        ))}
-      </div>
-    );
+    // return (
+    //   <div className="users">
+    //     {this.state.users.map((user) => (
+    //       <UserItem key={user.id} user={user} />
+    //     ))}
+    //   </div>
+    // );
   }
 }
 
