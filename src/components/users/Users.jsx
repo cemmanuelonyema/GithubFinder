@@ -32,8 +32,6 @@ export class Users extends Component {
     ],
   };
   render() {
-    // const { avatar_url, login, html_url } = this.state.users;
-
     return (
       <div className="users">
         {this.state.users.map((user) => (
@@ -42,23 +40,4 @@ export class Users extends Component {
       </div>
     );
   }
-}
-
-{
-  /* {this.state.users.map((user) => (
-          <div className="card text-center">
-            <img
-              alt="profile pic"
-              src={user.avatar_url}
-              className="round-img"
-              style={{ width: "60px" }}
-            />
-            <h3>{user.login}</h3>
-            <div>
-              <a className="btn btn-dark btn-sm my-1" href={user.html_url}>
-                More{" "}
-              </a>
-            </div>
-          </div>
-        ))} */
 }
