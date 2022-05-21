@@ -12,7 +12,7 @@ export class Spinner extends Component {
 }
 
 const spinnerStyle = {
-  width: "250px",
+  width: "350px",
   margin: "auto",
   display: "block",
 };

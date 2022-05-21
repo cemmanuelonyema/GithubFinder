@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./App.css";
 import NavBar from "./components/layout/NavBar";
-import { Users } from "./components/users/Users";
+import Users from "./components/users/Users";
 
 export default class App extends Component {
   state = {
