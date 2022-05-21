@@ -41,6 +41,14 @@ export class Users extends Component {
         ))}
       </div>
     );
+
+    // return (
+    //   <div className="users">
+    //     {this.props.users.map((user) => (
+    //       <UserItem key={user.id} user={user} />
+    //     ))}
+    //   </div>
+    // );
   }
 }
 
