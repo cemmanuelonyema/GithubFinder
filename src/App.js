@@ -5,6 +5,7 @@ import "./App.css";
 import NavBar from "./components/layout/NavBar";
 import { Users } from "./components/users/Users";
 import Search from "./components/utils/search/Search";
+import Alert from "./components/layout/Alert";
 
 class App extends Component {
   //   state = {
@@ -76,6 +77,7 @@ class App extends Component {
       },
     ],
     loading: false,
+    alert: null,
   };
 
   //   async based data fetching
@@ -86,6 +88,12 @@ class App extends Component {
   //   }
 
   clearUsers = () => this.setState({ users: [], loading: false });
+
+  setAlert = (msg, type) => {
+    this.setState({ alert: { msg, type } });
+
+    setTimeout(() => this.setState({ alert: null }), 5000);
+  };
 
   searchUsers = async (text) => {
     console.log(text);
@@ -105,11 +113,13 @@ class App extends Component {
       <div className="App">
         <NavBar />
         <div className="container">
+          <Alert alert={this.state.alert} />
           {/* placeholder can be changed by passing a 'placeholder' prop into the search comp */}
           <Search
             searchUsers={this.searchUsers}
             clearUsers={this.clearUsers}
             showClear={users.length > 0 ? true : false}
+            setAlert={this.setAlert}
           />
           <Users loading={loading} users={users} />
         </div>
