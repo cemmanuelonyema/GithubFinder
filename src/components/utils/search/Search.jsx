@@ -10,6 +10,9 @@ class Search extends Component {
   };
   static propTypes = {
     placeholder: PropTypes.string.isRequired,
+    searchUsers: PropTypes.func.isRequired,
+    clearUsers: PropTypes.func.isRequired,
+    showClear: PropTypes.bool.isRequired,
   };
 
   handleChange = (e) => {
@@ -22,22 +25,29 @@ class Search extends Component {
     this.setState({ text: "" });
   };
   render() {
-    const { placeholder } = this.props;
+    const { placeholder, showClear, clearUsers } = this.props;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          name="text"
-          placeholder={placeholder}
-          value={this.state.text}
-          onChange={this.handleChange}
-        />
-        <input
-          type="submit"
-          value="Search"
-          className="btn btn-dark btn-block"
-        />
-      </form>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            name="text"
+            placeholder={placeholder}
+            value={this.state.text}
+            onChange={this.handleChange}
+          />
+          <input
+            type="submit"
+            value="Search"
+            className="btn btn-dark btn-block"
+          />
+        </form>
+        {showClear && (
+          <button className="btn btn-block btn-light" onClick={clearUsers}>
+            Clear
+          </button>
+        )}
+      </div>
     );
   }
 }
