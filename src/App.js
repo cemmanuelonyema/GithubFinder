@@ -214,16 +214,6 @@ const App = () => {
 
   /////////////////////////////////
 
-  //Search users
-  const searchUsers = async (text) => {
-    setLoading(true);
-    const res = await axios.get(
-      `https://api.github.com/search/users?q=${text}client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
-    );
-    setUsers(res.data.item);
-    setLoading(false);
-  };
-
   //get a single github user
   const getUser = async (username) => {
     setLoading(true);
@@ -281,7 +271,7 @@ const App = () => {
                     {" "}
                     {/* placeholder can be changed by passing a 'placeholder' prop into the search comp */}
                     <Search
-                      searchUsers={searchUsers}
+               
                       clearUsers={clearUsers}
                       showClear={users.length > 0 ? true : false}
                       setAlert={displayAlert}

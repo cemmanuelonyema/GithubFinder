@@ -26,7 +26,15 @@ const GIthubState = (props) => {
 
   ///////Action methods
   //Search Users
-
+  const searchUsers = async (text) => {
+    setLoading();
+    const res = await axios.get(
+      `https://api.github.com/search/users?q=${text}client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+    // setUsers(res.data.item);
+    dispatch({ type: SEARCH_USERS, payload: res.data.item });
+    // setLoading(false);
+  };
   //get user
 
   //get repos
@@ -34,6 +42,7 @@ const GIthubState = (props) => {
   //clear user
 
   //set loading
+  const setLoading = () => dispatch({ type: SET_LOADING }); // dispatch an object that has the type TYPE to the reducer pulled from the useReducer
 
   return (
     //Value prop : Anything we want available to the entire app
@@ -43,6 +52,7 @@ const GIthubState = (props) => {
         user: state.user,
         repos: state.repos,
         loading: state.loading,
+        searchUsers,
       }}
     >
       {props.children}{" "}
