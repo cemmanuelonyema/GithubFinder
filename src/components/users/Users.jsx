@@ -43,7 +43,6 @@ export class Users extends Component {
 
   render() {
     const { users, loading } = this.props;
-    console.log(users, loading);
 
     if (loading) {
       return <Spinner />;
