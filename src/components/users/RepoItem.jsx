@@ -7,7 +7,6 @@ const RepoItem = ({ repo }) => {
       <h3>
         <a href={repo.html_url}>{repo.name}</a>
       </h3>
-      RepoItem
     </div>
   );
 };

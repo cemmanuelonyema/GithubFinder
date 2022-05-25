@@ -1,16 +1,17 @@
 //file for states and actions
 // I basically make a requests here and dispatch the result to my reducer
 
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect } from "react";
 import axios from "axios";
 import GithubContext from "./githubContext";
 import GitHubReducer from "./githubReducer";
 import {
   SEARCH_USERS,
+  FETCH_USERS,
   CLEAR_USERS,
   SET_LOADING,
   GET_REPOS,
-  GET_USERS,
+  GET_USER,
 } from "../types";
 
 const GIthubState = (props) => {
@@ -35,11 +36,33 @@ const GIthubState = (props) => {
     dispatch({ type: SEARCH_USERS, payload: res.data.item });
     // setLoading(false);
   };
-  //get user
+  //fetch user
+  const fetchAllUsers = async () => {
+    setLoading();
+    const res = await axios.get("https://api.github.com/users");
+    // setUsers(res.data);
+    dispatch({ type: FETCH_USERS, payload: res.data });
+  };
+
+  useEffect(() => {
+    fetchAllUsers();
+  }, []);
+
+  //get a single github user
+  const getUser = async (username) => {
+    setLoading();
+    const res = await axios.get(
+      `https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+    dispatch({ type: GET_USER, payload: res.data });
+  };
 
   //get repos
 
   //clear user
+  const clearUsers = () => {
+    dispatch({ type: CLEAR_USERS });
+  };
 
   //set loading
   const setLoading = () => dispatch({ type: SET_LOADING }); // dispatch an object that has the type TYPE to the reducer pulled from the useReducer
@@ -53,6 +76,9 @@ const GIthubState = (props) => {
         repos: state.repos,
         loading: state.loading,
         searchUsers,
+        clearUsers,
+        fetchAllUsers,
+        getUser,
       }}
     >
       {props.children}{" "}
