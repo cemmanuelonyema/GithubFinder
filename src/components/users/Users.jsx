@@ -4,6 +4,7 @@ import { Spinner } from "../utils/spinner/Spinner.js";
 import UserItem from "./UserItem";
 import "./usersStyle.css";
 
+    
 const Users = ({ loading, users }) => {
   if (loading) {
     return <Spinner />;
@@ -16,6 +17,7 @@ const Users = ({ loading, users }) => {
       </div>
     );
   }
+
 };
 
 Users.propTypes = {
@@ -24,3 +26,6 @@ Users.propTypes = {
 };
 
 export default Users;
+
+
+
